@@ -1,0 +1,245 @@
+/**
+ * rhinoPix1 Blog — Cyberpunk Theme
+ * Inspired by neon city nights, grid lines, and CRT glow.
+ */
+
+/* ============================================
+   1. Design Tokens
+   ============================================ */
+:root {
+  --rhp-bg: #0a0e1a;
+  --rhp-bg-soft: #11172a;
+  --rhp-bg-elev: #161d33;
+  --rhp-fg: #e6f1ff;
+  --rhp-fg-dim: #8aa1c1;
+  --rhp-neon-cyan: #00f0ff;
+  --rhp-neon-pink: #ff2e88;
+  --rhp-neon-purple: #b16cff;
+  --rhp-neon-green: #39ff14;
+  --rhp-border: rgba(0, 240, 255, 0.25);
+  --rhp-glow-cyan: 0 0 8px rgba(0, 240, 255, 0.6), 0 0 24px rgba(0, 240, 255, 0.25);
+  --rhp-glow-pink: 0 0 8px rgba(255, 46, 136, 0.6), 0 0 24px rgba(255, 46, 136, 0.25);
+  --rhp-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Menlo, Consolas, monospace;
+  --rhp-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ============================================
+   2. Base
+   ============================================ */
+html, body {
+  background-color: var(--rhp-bg);
+  color: var(--rhp-fg);
+  font-family: var(--rhp-font-sans);
+}
+
+body {
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+    radial-gradient(ellipse at top, rgba(177, 108, 255, 0.10), transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(255, 46, 136, 0.08), transparent 60%);
+  background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%;
+  background-attachment: fixed;
+}
+
+/* CRT scanline overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 240, 255, 0.025) 0px,
+    rgba(0, 240, 255, 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: 1000;
+  mix-blend-mode: overlay;
+}
+
+/* ============================================
+   3. Headings — neon glow
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--rhp-font-mono);
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  color: var(--rhp-neon-cyan);
+  text-shadow: var(--rhp-glow-cyan);
+  border-bottom: 1px solid var(--rhp-border);
+  padding-bottom: 0.4em;
+}
+
+h2 {
+  color: var(--rhp-neon-cyan);
+  text-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+}
+
+h3 { color: var(--rhp-neon-pink); }
+h4 { color: var(--rhp-neon-purple); }
+
+/* ============================================
+   4. Links
+   ============================================ */
+a {
+  color: var(--rhp-neon-cyan);
+  text-decoration: none;
+  transition: text-shadow 0.2s ease, color 0.2s ease;
+}
+a:hover {
+  color: var(--rhp-neon-pink);
+  text-shadow: var(--rhp-glow-pink);
+  text-decoration: none;
+}
+
+/* ============================================
+   5. Navbar — glassmorphism
+   ============================================ */
+.navbar {
+  background: rgba(10, 14, 26, 0.72) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rhp-border);
+  box-shadow: 0 2px 20px rgba(0, 240, 255, 0.08);
+}
+
+.navbar__title {
+  font-family: var(--rhp-font-mono);
+  color: var(--rhp-neon-cyan) !important;
+  text-shadow: var(--rhp-glow-cyan);
+  font-weight: 700;
+}
+
+.navbar__item.navbar__link {
+  font-family: var(--rhp-font-mono);
+  color: var(--rhp-fg) !important;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.navbar__item.navbar__link:hover,
+.navbar__item.navbar__link--active {
+  color: var(--rhp-neon-cyan) !important;
+  text-shadow: var(--rhp-glow-cyan);
+}
+
+/* ============================================
+   6. Sidebar
+   ============================================ */
+.theme-doc-sidebar-container,
+.menu {
+  background: rgba(17, 23, 42, 0.6) !important;
+  border-right: 1px solid var(--rhp-border);
+}
+
+.menu__link {
+  font-family: var(--rhp-font-mono);
+  font-size: 0.92em;
+  border-radius: 4px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.menu__link--active {
+  background: rgba(0, 240, 255, 0.10) !important;
+  color: var(--rhp-neon-cyan) !important;
+}
+
+.menu__link:hover {
+  background: rgba(255, 46, 136, 0.08);
+  color: var(--rhp-neon-pink) !important;
+}
+
+/* ============================================
+   7. Code blocks — neon border
+   ============================================ */
+code {
+  font-family: var(--rhp-font-mono);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  color: var(--rhp-neon-cyan);
+}
+
+pre {
+  background: var(--rhp-bg-soft) !important;
+  border: 1px solid var(--rhp-border);
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.10) inset;
+}
+
+pre code {
+  background: transparent;
+  border: none;
+  color: var(--rhp-fg);
+}
+
+/* ============================================
+   8. Footer
+   ============================================ */
+.footer {
+  background: var(--rhp-bg-soft);
+  border-top: 1px solid var(--rhp-border);
+}
+
+/* ============================================
+   9. Buttons
+   ============================================ */
+.button--primary {
+  background: linear-gradient(135deg, var(--rhp-neon-cyan), var(--rhp-neon-purple)) !important;
+  border: none !important;
+  color: #0a0e1a !important;
+  font-family: var(--rhp-font-mono);
+  font-weight: 700;
+  box-shadow: var(--rhp-glow-cyan);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+.button--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--rhp-glow-pink);
+}
+
+.button--secondary {
+  background: transparent !important;
+  border: 1px solid var(--rhp-neon-cyan) !important;
+  color: var(--rhp-neon-cyan) !important;
+  font-family: var(--rhp-font-mono);
+}
+.button--secondary:hover {
+  background: rgba(0, 240, 255, 0.1) !important;
+  box-shadow: var(--rhp-glow-cyan);
+}
+
+/* ============================================
+   10. Cards / admonitions
+   ============================================ */
+.theme-admonition {
+  border-radius: 6px;
+  border-left-width: 4px;
+}
+
+.admonition admonition-note,
+.theme-admonition-note {
+  border-left-color: var(--rhp-neon-cyan);
+}
+
+/* ============================================
+   11. Scrollbar (webkit)
+   ============================================ */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--rhp-bg-soft); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--rhp-neon-cyan), var(--rhp-neon-purple));
+  border-radius: 5px;
+}
+
+/* ============================================
+   12. Selection
+   ============================================ */
+::selection {
+  background: var(--rhp-neon-pink);
+  color: #0a0e1a;
+}
