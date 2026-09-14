@@ -33,7 +33,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build site
-        run: yarn build
+        run: NODE_OPTIONS="--max-old-space-size=6144" yarn build
         env:
           DOCUSAURUS_URL: https://yoyojacky.github.io
 
