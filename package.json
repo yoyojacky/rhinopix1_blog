@@ -1,0 +1,21 @@
+{
+  "name": "rhinopix1-blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "rhinoPix1's personal blog — cyberpunk themed, bilingual (zh-Hans / en)",
+  "scripts": {
+    "start": "node --max-old-space-size=2048 node_modules/@docusaurus/core/bin/docusaurus.mjs start --host 0.0.0.0 --port 50011",
+    "build": "node --max-old-space-size=2048 node_modules/@docusaurus/core/bin/docusaurus.mjs build",
+    "serve": "node node_modules/@docusaurus/core/bin/docusaurus.mjs serve --host 0.0.0.0 --port 50012",
+    "clear": "node node_modules/@docusaurus/core/bin/docusaurus.mjs clear"
+  },
+  "dependencies": {
+    "@docusaurus/core": "^3.8.1",
+    "@docusaurus/preset-classic": "^3.8.1",
+    "@easyops-cn/docusaurus-search-local": "^0.55.3",
+    "clsx": "^2.1.1",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
